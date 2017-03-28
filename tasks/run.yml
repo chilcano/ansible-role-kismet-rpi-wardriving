@@ -1,0 +1,23 @@
+---
+- name: Copying '{{ kismet_rpi_wardriving_warpi_start_script }}.j2' template.
+  template:
+    src: "templates/{{ kismet_rpi_wardriving_warpi_start_script }}.j2"
+    dest: "/home/{{ ansible_ssh_user }}/{{ kismet_rpi_wardriving_warpi_start_script }}"
+    mode: 0750
+
+- name: Copying '{{ kismet_rpi_wardriving_warpi_service_name }}.service.j2' template.
+  template:
+    src: "templates/{{ kismet_rpi_wardriving_warpi_service_name }}.service.j2"
+    dest: "/etc/systemd/system/{{ kismet_rpi_wardriving_warpi_service_name }}.service"
+
+- name: Reloading '{{ kismet_rpi_wardriving_warpi_service_name }}' systemd service.
+  command: systemctl daemon-reload
+
+- name: Starting '{{ kismet_rpi_wardriving_warpi_service_name }}' systemd service.
+  service:
+    name: "{{ kismet_rpi_wardriving_warpi_service_name }}"
+    enabled: yes
+    state: reloaded
+
+- debug:
+    msg: "Service '{{ kismet_rpi_wardriving_warpi_service_name }}' started successfully. Now Kismet is sending events on 2501 port ( nc -vz localhost 2501 )"
