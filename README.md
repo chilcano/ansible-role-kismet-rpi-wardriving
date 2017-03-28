@@ -43,6 +43,9 @@ The `inventory` file contains:
 ```
 [pikismets]
 192.168.1.35
+
+[pibuilder]
+192.168.1.204
 ```
 
 
