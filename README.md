@@ -17,9 +17,7 @@ This Role provides the following features:
 
 ## Role Variables
 
-Default variables are in `defaults/main.yml`, `vars/main.yml`.
-
-## Dependencies
+Default variables is in `defaults/main.yml`.
 
 ### General variables
 ```
@@ -54,6 +52,9 @@ kismet_rpi_wardriving_conf_logdefault: kismet
 kismet_rpi_wardriving_conf_logtypes: pcapdump,netxml
 kismet_rpi_wardriving_conf_cfgdir: .kismet
 ```
+## Dependencies
+
+None.
 
 ## Example Playbook
 
