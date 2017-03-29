@@ -19,29 +19,36 @@ This Role provides the following features:
 
 Default variables is in `defaults/main.yml`.
 
+### Actions to be executed
+```
+kismet_rpi_wardriving_clean: true
+kismet_rpi_wardriving_install: true
+kismet_rpi_wardriving_run: true
+```
+
 ### General variables
 ```
 kismet_rpi_wardriving_id: "kismet"
 kismet_rpi_wardriving_version_number: "2016-07"
 kismet_rpi_wardriving_version_release: "R1"
 kismet_rpi_wardriving_architecture: "armhf"
-kismet_rpi_wardriving_version: "{{ kismet_rpi_build_version_number }}-{{ kismet_rpi_build_version_release }}"
+kismet_rpi_wardriving_version: "{{ kismet_rpi_wardriving_version_number }}-{{ kismet_rpi_wardriving_version_release }}"
 ```
 
 ### Variables to download the installer
 ```
 kismet_rpi_wardriving_localmirror_dir_name_www: "localmirror"
 kismet_rpi_wardriving_localmirror_dir_name_local: "/Users/Chilcano/1github-repo/binaries/"
+### to download installer from tasks
 kismet_rpi_wardriving_bin_installer: "{{ kismet_rpi_wardriving_id }}_{{ kismet_rpi_wardriving_version }}_{{ kismet_rpi_wardriving_architecture }}.deb"
 #kismet_rpi_wardriving_bin_installer_url: "{{ kismet_rpi_wardriving_localmirror_dir_name_local }}{{ kismet_rpi_wardriving_bin_installer }}"
 kismet_rpi_wardriving_bin_installer_url: "http://{{ groups['pibuilder'][0] }}/{{ kismet_rpi_wardriving_localmirror_dir_name_www }}/{{ kismet_rpi_wardriving_bin_installer }}"
 ```
-### Variables to run Kismet systemd
+### Variables to cleand and run Kismet systemd
 ```
-kismet_rpi_wardriving_clean: false
 kismet_rpi_wardriving_remove_dependencies: false
 kismet_rpi_wardriving_warpi_start_script: warpi.sh
-kismet_rpi_wardriving_warpi_service_name: warpi
+kismet_rpi_wardriving_warpi_service_name: warpi.service
 ```
 ### Variables for `kismet.conf`
 ```
@@ -52,6 +59,7 @@ kismet_rpi_wardriving_conf_logdefault: kismet
 kismet_rpi_wardriving_conf_logtypes: pcapdump,netxml
 kismet_rpi_wardriving_conf_cfgdir: .kismet
 ```
+
 ## Dependencies
 
 None.

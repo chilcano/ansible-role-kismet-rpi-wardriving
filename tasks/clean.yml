@@ -1,9 +1,11 @@
 ---
-- name: Check if '{{ kismet_rpi_wardriving_warpi_service_name }}.service' systemd file exists.
-  stat: path="/etc/systemd/system/{{ kismet_rpi_wardriving_warpi_service_name }}.service"
+- debug: msg="(( Cleaning Kismet. ))"
+
+- name: Check if '{{ kismet_rpi_wardriving_warpi_service_name }}' systemd file exists.
+  stat: path="/etc/systemd/system/{{ kismet_rpi_wardriving_warpi_service_name }}"
   register: my_systemd_service_file
 
-- name: Stopping and disabling '{{ kismet_rpi_wardriving_warpi_service_name }}.service' systemd.
+- name: Stopping and disabling '{{ kismet_rpi_wardriving_warpi_service_name }}' systemd.
   service:
     name: "{{ kismet_rpi_wardriving_warpi_service_name }}"
     enabled: no
@@ -13,9 +15,9 @@
 - find:
     paths:
       - "/home/{{ ansible_ssh_user }}/"
-      - "{{ kismet_rpi_wardriving_kismet_conf_log }}"
+      - "{{ kismet_rpi_wardriving_conf_logdir }}"
       - "/etc/systemd/system/"
-    patterns: "^(.kismet|kismet|Kismet|{{ kismet_rpi_wardriving_warpi_service_name }}).*$"
+    patterns: "^(.kismet|kismet|Kismet|{{ kismet_rpi_wardriving_warpi_service_name }}|{{ kismet_rpi_wardriving_warpi_start_script }}).*$"
     use_regex: True
   register: kismet_files_to_cleanup
 

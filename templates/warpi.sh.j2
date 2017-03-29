@@ -2,20 +2,20 @@
 # Shell script to enable monitor mode in WLAN and start Kismet Server
 # by Chilcano
 
-if [iwconfig {{ kismet_rpi_wardriving_wifi_nic }} | grep -q "Mode:Monitor"]; then
+if [iwconfig {{ kismet_rpi_wardriving_conf_wifinic }} | grep -q "Mode:Monitor"]; then
   # Monitor mode found, restoring
-  ifconfig {{ kismet_rpi_wardriving_wifi_nic }} down
-  iwconfig {{ kismet_rpi_wardriving_wifi_nic }} mode Managed
-  ifconfig {{ kismet_rpi_wardriving_wifi_nic }} up
+  ifconfig {{ kismet_rpi_wardriving_conf_wifinic }} down
+  iwconfig {{ kismet_rpi_wardriving_conf_wifinic }} mode Managed
+  ifconfig {{ kismet_rpi_wardriving_conf_wifinic }} up
   # Bringing monitor mode again
-  ifconfig {{ kismet_rpi_wardriving_wifi_nic }} down
-  iwconfig {{ kismet_rpi_wardriving_wifi_nic }} mode Monitor
-  #ifconfig {{ kismet_rpi_wardriving_wifi_nic }} up
+  ifconfig {{ kismet_rpi_wardriving_conf_wifinic }} down
+  iwconfig {{ kismet_rpi_wardriving_conf_wifinic }} mode Monitor
+  #ifconfig {{ kismet_rpi_wardriving_conf_wifinic }} up
 else
   # Bringing monitor mode
-  ifconfig {{ kismet_rpi_wardriving_wifi_nic }} down
-  iwconfig {{ kismet_rpi_wardriving_wifi_nic }} mode Monitor
-  #ifconfig {{ kismet_rpi_wardriving_wifi_nic }} up
+  ifconfig {{ kismet_rpi_wardriving_conf_wifinic }} down
+  iwconfig {{ kismet_rpi_wardriving_conf_wifinic }} mode Monitor
+  #ifconfig {{ kismet_rpi_wardriving_conf_wifinic }} up
 fi
 
 # Starting kismet_server
