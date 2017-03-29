@@ -20,14 +20,14 @@ This Role provides the following features:
 Default variables is in `defaults/main.yml`.
 
 ### Actions to be executed
-```
+```yaml
 kismet_rpi_wardriving_clean: true
 kismet_rpi_wardriving_install: true
 kismet_rpi_wardriving_run: true
 ```
 
 ### General variables
-```
+```yaml
 kismet_rpi_wardriving_id: "kismet"
 kismet_rpi_wardriving_version_number: "2016-07"
 kismet_rpi_wardriving_version_release: "R1"
@@ -36,7 +36,7 @@ kismet_rpi_wardriving_version: "{{ kismet_rpi_wardriving_version_number }}-{{ ki
 ```
 
 ### Variables to download the installer
-```
+```yaml
 kismet_rpi_wardriving_localmirror_dir_name_www: "localmirror"
 kismet_rpi_wardriving_localmirror_dir_name_local: "/Users/Chilcano/1github-repo/binaries/"
 ### to download installer from tasks
@@ -44,14 +44,16 @@ kismet_rpi_wardriving_bin_installer: "{{ kismet_rpi_wardriving_id }}_{{ kismet_r
 #kismet_rpi_wardriving_bin_installer_url: "{{ kismet_rpi_wardriving_localmirror_dir_name_local }}{{ kismet_rpi_wardriving_bin_installer }}"
 kismet_rpi_wardriving_bin_installer_url: "http://{{ groups['pibuilder'][0] }}/{{ kismet_rpi_wardriving_localmirror_dir_name_www }}/{{ kismet_rpi_wardriving_bin_installer }}"
 ```
+
 ### Variables to cleand and run Kismet systemd
-```
+```yaml
 kismet_rpi_wardriving_remove_dependencies: false
 kismet_rpi_wardriving_warpi_start_script: warpi.sh
 kismet_rpi_wardriving_warpi_service_name: warpi.service
 ```
+
 ### Variables for `kismet.conf`
-```
+```yaml
 kismet_rpi_wardriving_conf_wifinic: wlan0
 kismet_rpi_wardriving_conf_logdir: /var/log/kismet
 kismet_rpi_wardriving_conf_logdefault: kismet
@@ -68,7 +70,7 @@ None.
 
 Using the Ansible Role in a Raspberry Pi for installing and configuring pre-compiled Kismet.
 
-```
+```yaml
 ---
 - hosts: pikismets
   become: yes
@@ -81,7 +83,7 @@ Using the Ansible Role in a Raspberry Pi for installing and configuring pre-comp
 ```
 
 The `inventory` file contains:
-```
+```yaml
 [pikismets]
 192.168.1.35
 
